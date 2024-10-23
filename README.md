@@ -4,7 +4,7 @@
 
 It will soon be, and the end goal is integration with vscode in plugin form.
 
-I am also looking to compile this into a standalone executable, so you don't have to run it with node. Unsure on the pheasability of that, we will see...
+I am also looking to compile this into a standalone executable, so you don't have to run it with node. Unsure on the feasibility of that, we will see...
 
 ## Extra Info
 
