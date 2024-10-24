@@ -2,6 +2,6 @@
 	"name":"Yahtzee",
 	"type":"C",
 	"source-files":["src/main.c", "src/yahtz.c"],
-	"header-files":["include/yahtz.h"],
+	"header-files":["src/yahtz.h"],
 	"resource-files":["data/previous_game.txt"]
 }

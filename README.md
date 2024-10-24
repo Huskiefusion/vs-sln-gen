@@ -6,7 +6,7 @@ It will soon be, and the end goal is integration with vscode in plugin form.
 
 I am also looking to compile this into a standalone executable, so you don't have to run it with node. Unsure on the feasibility of that, we will see...
 
-## Extra Info
+## Extra (but very important) Info
 
 Run the program with `--help` or `-h` for additional info.
 
@@ -38,6 +38,8 @@ Your config.json should look like:
 "header-files":["include/yahtz.h"],
 "resource-files":["data/previous_game.txt"]}
 ```
+
+After running the program, a new folder will be created in the current working directory of your terminal. **Please** make sure this folder does not already exist. The program *does not* check and will just write to an existing folder.
 
 ### Resources
 
