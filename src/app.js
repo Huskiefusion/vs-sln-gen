@@ -10,11 +10,18 @@ function main(){
 		console.log("If no path is supplied, the program will default to ./config.json relative to the current directory.");
 		return;
 	}
+	else if(process.argv[2]=="--list" || process.argv[2]=="-l"){
+		console.log("Supported project types:");
+		for (let key in uuids){
+			console.log(`${key}: ${uuids[key]}`);
+		}
+		return;
+	}
 	// Check if a config file path was supplied
 	if(!process.argv[2]) { console.log("Path to config not supplied, defaulting to ./config.json");}
 	const configPath = (process.argv[2]) ? process.argv[2] : 'config.json';
 	let projectConfig;
-	let slnUUID = crypto.randomUUID()	; // Generate a UUID for the solution
+	let slnUUID = crypto.randomUUID(); // Generate a UUID for the solution
 	let projectUUID = crypto.randomUUID();	// Generate a UUID for the project
 
 	try{ // Read the config file
@@ -24,7 +31,47 @@ function main(){
 		console.log("Error reading config file: " + e);
 		return;
 	}
-	console.log(templates.generateVcxfilters(projectConfig["source-files"], projectConfig["header-files"], projectConfig["resource-files"]) );
+
+	slnContent = templates.generateSln(projectConfig.name, uuids[projectConfig.type], slnUUID, projectUUID);
+	vcxprojContent = templates.generateVcxproj(projectConfig, projectUUID, projectConfig["source-files"], projectConfig["header-files"], projectConfig["resource-files"]);
+	vcxprojFiltersContent = templates.generateVcxfilters(projectConfig["source-files"], projectConfig["header-files"], projectConfig["resource-files"]);
+	
+	fs.mkdirSync(projectConfig.name); fs.mkdirSync(`${projectConfig.name}/${projectConfig.name}`);
+	fs.writeFile(`${projectConfig.name}/${projectConfig.name}.sln`, slnContent, (err)=> {
+		if(err) { console.log("Error writing .sln file: " + err); }
+		else { console.log("Solution file written successfully."); }
+	})
+	fs.writeFile(`${projectConfig.name}/${projectConfig.name}/${projectConfig.name}.vcxproj`, vcxprojContent, (err)=> {
+		if(err) { console.log("Error writing .vcxproj file: " + err); }
+		else { console.log("Project file written successfully."); }
+	})
+	fs.writeFile(`${projectConfig.name}/${projectConfig.name}/${projectConfig.name}.vcxproj.filters`, vcxprojFiltersContent, (err)=> {
+		if(err) { console.log("Error writing .filters file: " + err); }
+		else { console.log("Filter file written successfully."); }
+	})
+
+	// Copy source files to new directory
+	projectConfig["source-files"].forEach((filepath) => {
+		file=fileFromPath(filepath);
+		fs.copyFile(filepath, `${projectConfig.name}/${projectConfig.name}/${file}`, (err) => {
+			if(err) {throw err;}
+	})});
+	// Copy header files to new directory
+	projectConfig["header-files"].forEach((filepath) => {
+		file=fileFromPath(filepath);
+		fs.copyFile(filepath, `${projectConfig.name}/${projectConfig.name}/${file}`, (err) => {
+			if(err) {throw err;}
+	})});
+	// Copy resource files to new directory
+	projectConfig["resource-files"].forEach((filepath) => {
+		file=fileFromPath(filepath);
+		fs.copyFile(filepath, `${projectConfig.name}/${projectConfig.name}/${file}`, (err) => {
+			if(err) {throw err;}
+	})});
 
 	console.log(`Project name: ${projectConfig.name} || Project type: ${projectConfig.type} || Type UUID: ${uuids[projectConfig.type]}`);
+}
+
+function fileFromPath(path){
+	return path.split("/").pop();
 }
