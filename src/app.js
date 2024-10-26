@@ -21,8 +21,8 @@ function main(){
 	if(!process.argv[2]) { console.log("Path to config not supplied, defaulting to ./config.json");}
 	const configPath = (process.argv[2]) ? process.argv[2] : 'config.json';
 	let projectConfig;
-	let slnUUID = crypto.randomUUID(); // Generate a UUID for the solution
-	let projectUUID = crypto.randomUUID();	// Generate a UUID for the project
+	let slnUUID = crypto.randomUUID().toUpperCase(); // Generate a UUID for the solution
+	let projectUUID = crypto.randomUUID().toUpperCase();	// Generate a UUID for the project
 
 	try{ // Read the config file
 		projectConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
@@ -31,9 +31,8 @@ function main(){
 		console.log("Error reading config file: " + e);
 		return;
 	}
-
 	slnContent = templates.generateSln(projectConfig.name, uuids[projectConfig.type], slnUUID, projectUUID);
-	vcxprojContent = templates.generateVcxproj(projectConfig, projectUUID, projectConfig["source-files"], projectConfig["header-files"], projectConfig["resource-files"]);
+	vcxprojContent = templates.generateVcxproj(projectConfig.name, projectUUID, projectConfig["source-files"], projectConfig["header-files"], projectConfig["resource-files"]);
 	vcxprojFiltersContent = templates.generateVcxfilters(projectConfig["source-files"], projectConfig["header-files"], projectConfig["resource-files"]);
 	
 	fs.mkdirSync(projectConfig.name); fs.mkdirSync(`${projectConfig.name}/${projectConfig.name}`);

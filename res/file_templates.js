@@ -1,9 +1,10 @@
 
 exports.generateSln = (projectName, projectTypeUUID, slnUUID, projectUUID) => {
-	return `Microsoft Visual Studio Solution File, Format Version 12.00 
-#Visual Studio Version 17
+	return `
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
 VisualStudioVersion = 17.11.35208.52
-MinimumVisualStudioVersion = 10.0.40219.1 
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{${projectTypeUUID}}") = "${projectName}", "${projectName}\\${projectName}.vcxproj", "{${projectUUID}}"
 EndProject
 Global
@@ -64,7 +65,7 @@ exports.generateVcxproj = (projectName, projectUUID, sourceFiles, headerFiles, r
 		<RootNamespace>${projectName}</RootNamespace>
 		<WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
 	</PropertyGroup>
-	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+	<Import Project="$(VCTargetsPath)\\Microsoft.Cpp.Default.props" />
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
 		<ConfigurationType>Application</ConfigurationType>
 		<UseDebugLibraries>true</UseDebugLibraries>
@@ -91,22 +92,22 @@ exports.generateVcxproj = (projectName, projectUUID, sourceFiles, headerFiles, r
 		<WholeProgramOptimization>true</WholeProgramOptimization>
 		<CharacterSet>Unicode</CharacterSet>
 	</PropertyGroup>
-	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+	<Import Project="$(VCTargetsPath)\\Microsoft.Cpp.props" />
 	<ImportGroup Label="ExtensionSettings">
 	</ImportGroup>
 	<ImportGroup Label="Shared">
 	</ImportGroup>
 	<ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+		<Import Project="$(UserRootDir)\\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
 	</ImportGroup>
 	<ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+		<Import Project="$(UserRootDir)\\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
 	</ImportGroup>
 	<ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+		<Import Project="$(UserRootDir)\\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
 	</ImportGroup>
 	<ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+		<Import Project="$(UserRootDir)\\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
 	</ImportGroup>
 	<PropertyGroup Label="UserMacros" />
 	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -184,7 +185,7 @@ exports.generateVcxproj = (projectName, projectUUID, sourceFiles, headerFiles, r
 		});
 		fileContent += `\t</ItemGroup>\n`;
 
-		fileContent+=`\t<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+		fileContent+=`\t<Import Project="$(VCTargetsPath)\\Microsoft.Cpp.targets" />
 	<ImportGroup Label="ExtensionTargets">
 	</ImportGroup>
 </Project>`
@@ -233,9 +234,9 @@ exports.generateVcxfilters = (sourceFiles, headerFiles, resourceFiles) =>{
 	fileContent+=`\t<ItemGroup>`;
 	resourceFiles.forEach(element => {
 		fileContent+=`
-		<ClCompile Include="${element.slice(element.lastIndexOf("/")+1)}">
+		<Text Include="${element.slice(element.lastIndexOf("/")+1)}">
 			<Filter>Resource Files</Filter>
-		</ClCompile>`
+		</Text>`
 	});
 	fileContent+=`\n\t</ItemGroup>\n`;
 
