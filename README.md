@@ -40,6 +40,8 @@ Your config.json should look like:
 
 After running the program, a new folder will be created in the current working directory of your terminal. **Please** make sure this folder does not already exist. The program *does not* check and will just write to an existing folder.
 
+The only type of project this has been tested is C/C++, others may not work.
+
 ### Resources
 
 I used [this](https://stackoverflow.com/questions/10802198/visual-studio-project-type-guids) handy VS UUID Reference from Drew Noakes on Stack Exchange.
