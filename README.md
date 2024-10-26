@@ -1,8 +1,7 @@
 # Visual Studio Project Generator for NodeJs
 
-**THIS IS NOT CURRENTLY FUNCTIONING.**
-
-It will soon be, and the end goal is integration with vscode in plugin form.
+This project is now functional. The format required for your `config.json` file is shown below.
+You can run the program with `--help` or `-h` to view the usage.
 
 I am also looking to compile this into a standalone executable, so you don't have to run it with node. Unsure on the feasibility of that, we will see...
 
