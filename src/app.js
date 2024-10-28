@@ -1,7 +1,7 @@
 let fs = require('fs');
 let templates=require("../res/file_templates.js");
 let uuids = require("../res/project-uuids.json");
-
+crypto = require("crypto");
 main();
 
 function main(){
