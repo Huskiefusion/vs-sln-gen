@@ -11,9 +11,7 @@ If you choose to the uncomiled program that you run with `node`, I would recomme
 
 Run the program with `--help` or `-h` for additional info.
 
-**NOTE**
-
-For the resource files in the project: You will need to update the paths within your code! Eventually there will be a configuration option that will mitigate the issue, but that time is not right now.
+**NOTE:** For the resource files in the project: You will need to update the paths within your code! Eventually there will be a configuration option that will mitigate the issue, but that time is not right now.
 
 ### Prerequisites
 
