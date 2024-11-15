@@ -15,17 +15,17 @@ Run the program with `--help` or `-h` for additional info.
 
 ### Prerequisites
 
-NodeJS (I use v23.1.0)
+NodeJS (I use v23.1.0, but building the binaries for Windows I use LTS v18.20.5)
 
 The project installed somewhere on your machine
 
 **If you want to compile the binary:**
 
-- Npx
+- Npx 
 
-- Npx Package: esbuild
+- Npm Package: esbuild
 
-- Npx Package: pkg
+- Npm Package: pkg
 
 Changed the build method, now peep [this one](https://dev.to/midnqp/bundling-nodejs-into-single-executable-binary-l3g).
 Also [this](https://www.npmjs.com/package/pkg/v/3.0.5) could be helpful.
